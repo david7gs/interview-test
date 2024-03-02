@@ -171,12 +171,19 @@ body {
     line-height: 24px;
     margin: 12px 0;
 }
-
 .masonry {
     margin: 0 auto;
     padding: 50px;
     gap: var(--spacing-m);
     max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.masonry .double {
+    grid-column: 2 / span 2;
+}
+.masonry .triple {
+    grid-column: 1 / span 3;
 }
 
 .faq {
@@ -191,10 +198,21 @@ body {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 .faq .answer {
     padding: 0 8px;
+    /*display: none;*/
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
+
+.faq .answer.active  {
+    /*display: block;*/
+    /*max-height: max-content;*/
+}
+
 .faq .question::after {
     content: '';
     display: block;
@@ -205,15 +223,22 @@ body {
     border-top: 2px solid;
     border-right: 2px solid;
     transform: rotate(225deg);
+    transition: all .3s linear;
     right: 12px;
     top: 36px;
 }
+
+.faq .question.active::after {
+    transform: rotate(135deg);
+    transition: all .3s linear;
+}
+
 .faq .answer p {
     margin-top: 0;
 }
 .banner {
     background-color: #eee;
-    padding: 16px;
+    /*padding: 16px;*/
     text-align: center;
 }
 .banner .con-button.blue {
@@ -222,13 +247,54 @@ body {
     padding: 4px 12px;
 }
 .section:last-child {
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
+    position: sticky;
+    width: 100%;
+    bottom: 0;
 }
 
-
+.section .banner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
 @media screen and (min-width: 600px) {
     .action-area {
         align-items: center;
         flex-direction: row;
+    }
+}
+@media screen and (max-width: 768px) {
+    .masonry {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .masonry .double {
+        grid-column: 2 / span 1;
+    }
+    .masonry .triple {
+        grid-column: 1 / span 2;
+    }
+    .faq .question {
+        padding: 8px 40px;
+    }
+    .faq .answer {
+        padding: 0 20px 0 40px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .hero h1 {
+        line-height: 2.4rem;
+    }
+    .masonry {
+        display: flex;
+        flex-flow: column;
+    }
+    .masonry .brick .description {
+        text-align: center;
+    }
+}
+@media screen and (max-width: 375px) {
+    .action-area {
+        display: flex;
     }
 }
