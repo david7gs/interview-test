@@ -34,18 +34,18 @@ function processHero(el) {
     const pList = Array.from (el.querySelectorAll('p'));
     pList.forEach((pTag, i) => {
         if (pTag.querySelector('a')) {
-            let b       = pTag.querySelector('b').firstElementChild;
             let i       = pTag.querySelector('i').firstElementChild;
+            let b       = pTag.querySelector('b').firstElementChild;
             pTag.classList.add('action-area');
-            if (b) {
-                b.classList.add('con-button');
-                pTag.appendChild(b);
-                pTag.querySelector('b').remove();
-            }
             if (i) {
                 i.classList.add('con-button', 'blue');
                 pTag.appendChild(i);
                 pTag.querySelector('i').remove();
+            }
+            if (b) {
+                b.classList.add('con-button');
+                pTag.appendChild(b);
+                pTag.querySelector('b').remove();
             }
         }
     });
