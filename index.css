@@ -293,7 +293,6 @@ body {
         text-align: center;
     }
 }
-
 @media screen and (max-width: 375px) {
     .action-area {
         display: flex;
